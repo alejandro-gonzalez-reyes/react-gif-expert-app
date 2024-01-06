@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AddCategory } from "./components/AddCategory";
 
 export const GifExpertApp = () => {
   // Siempre que se desee cambiar parte del contenido del HTML de forma dinámica, se debe pensar en el estado interno del componente
@@ -20,6 +21,7 @@ export const GifExpertApp = () => {
       <h1>Gif Expert App</h1>
 
       {/* Buscador de Gifs */}
+      <AddCategory />
       <button onClick={onAddCategory}>Agregar nueva categoría</button>
       {/* Listado de Gifs relacionados con la búsqueda */}
       <ol>
