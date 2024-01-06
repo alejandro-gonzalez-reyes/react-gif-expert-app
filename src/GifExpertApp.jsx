@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AddCategory } from "./components/AddCategory";
+import { GifGrid } from "./components/GifGrid";
 
 export const GifExpertApp = () => {
   // Siempre que se desee cambiar parte del contenido del HTML de forma dinámica, se debe pensar en el estado interno del componente
@@ -36,16 +37,16 @@ export const GifExpertApp = () => {
       <AddCategory onNewCategory={onAddCategory} />
 
       {/* Listado de Gifs relacionados con la búsqueda */}
-      <ol>
-        {/* 
+
+      {/* 
         Iterar el contenido de nuestro estado de categorías e imprimirlas en pantalla.
         Es importante que para cada elemento, se le asigne un key, el cuál sirve como variable de control para que React tenga conocimiento que elemento entra y se destruye
         React recomienda no usar el index que nos ofrece el map por cada elemento iterado como key, ya que al salir o eliminar un elemento de ese arreglo los indices de los elmentos se ajustan en -1, lo que puede llevar a errores al momento de renderizar el componente (si se elimina el elemento con índice 0, este sale, pero el elemento que tenía índice 1 ahora pasa a ser 0) 
         */}
-        {categories.map((category, index) => (
-          <li key={category}>{category}</li>
-        ))}
-      </ol>
+      {categories.map((category, index) => (
+        // Usar el componente encargado de mostrar el titular de categoría y su respectivo grid de gifs
+        <GifGrid key={category} category={category} />
+      ))}
     </>
   );
 };
