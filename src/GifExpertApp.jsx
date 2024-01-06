@@ -13,6 +13,16 @@ export const GifExpertApp = () => {
 
   // Función encargada de actualizar el estado referente al listado de categorías
   const onAddCategory = (newCategory) => {
+    // validar que la nueva categoría no se encuentre previamente en el arreglo
+    // if (categories.includes(newCategory)) return;
+
+    // Busqueda estricta para localizar categorías repetidas en el arreglo, aunque estén declaradas en mayúsculas o mionúsculas
+    const coincidencias = categories.filter(
+      (category, index) =>
+        category.trim().toLowerCase() == newCategory.toLowerCase()
+    );
+    if (coincidencias.length > 0) return;
+
     // Crear un nuevo estado conservando la información actual, evitando mutar el arreglo con el operador spreed
     setCategories([...categories, newCategory]);
   };
@@ -29,10 +39,11 @@ export const GifExpertApp = () => {
       <ol>
         {/* 
         Iterar el contenido de nuestro estado de categorías e imprimirlas en pantalla.
-        Es importante que para cada elemento, se le asigne un key, el cuál sirve como variable de control para que React tenga conocimiento que elemento entra y se destruye en el componente
+        Es importante que para cada elemento, se le asigne un key, el cuál sirve como variable de control para que React tenga conocimiento que elemento entra y se destruye
+        React recomienda no usar el index que nos ofrece el map por cada elemento iterado como key, ya que al salir o eliminar un elemento de ese arreglo los indices de los elmentos se ajustan en -1, lo que puede llevar a errores al momento de renderizar el componente (si se elimina el elemento con índice 0, este sale, pero el elemento que tenía índice 1 ahora pasa a ser 0) 
         */}
         {categories.map((category, index) => (
-          <li key={`${category}-${index}`}>{category}</li>
+          <li key={category}>{category}</li>
         ))}
       </ol>
     </>
