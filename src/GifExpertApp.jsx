@@ -11,9 +11,10 @@ export const GifExpertApp = () => {
     "Super Campeones",
   ]);
 
-  const onAddCategory = () => {
+  // Función encargada de actualizar el estado referente al listado de categorías
+  const onAddCategory = (newCategory) => {
     // Crear un nuevo estado conservando la información actual, evitando mutar el arreglo con el operador spreed
-    setCategories([...categories, "Valorant"]);
+    setCategories([...categories, newCategory]);
   };
   return (
     <>
@@ -21,8 +22,9 @@ export const GifExpertApp = () => {
       <h1>Gif Expert App</h1>
 
       {/* Buscador de Gifs */}
-      <AddCategory />
-      <button onClick={onAddCategory}>Agregar nueva categoría</button>
+      {/* El componente GifExpertApp es el encargado de gestionar el estado referente al listado de categorías, en este sentido, sabe como guardar la información. Por tanto, pasa la función encargada de realizar dicha tarea al componente AddCategory a través de una prop que es considerada como un evento personalizado. De esta forma ambos componentes se encuentran comunicados entre si, uno permite escribir la nueva categoría y el otro se encarga de almacenarla en el estado */}
+      <AddCategory onNewCategory={onAddCategory} />
+
       {/* Listado de Gifs relacionados con la búsqueda */}
       <ol>
         {/* 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 // Componente para agregar una categoría
-export const AddCategory = () => {
+export const AddCategory = ({ onNewCategory }) => {
   // Estado interno del componente, almacena el valor actual ingresado en la caja de formulario
   const [inputValue, setInputValue] = useState("");
 
@@ -10,10 +10,22 @@ export const AddCategory = () => {
     setInputValue(event.target.value);
   };
 
-  // función controladora de evento siubmit, recupera el estado actual
+  // función controladora de evento submit
   const onSubmit = (event) => {
+    // Previene el comportamiento por defecto
     event.preventDefault();
-    console.log(inputValue);
+
+    // Evitar registrar la categoría si la longitud es menor o igual a 1 caracter
+    if (inputValue.trim().length <= 1) return;
+
+    // Recupera el estado actual de este componente y lo asigna al estado que hace referencia al arreglo de categorías, declarado en el componente padre.
+
+    // ! Para pasar información de un componente padre a un hijo se hace a través de sus Props (padre a hijo)
+    // * Para pasar información de un componente hijo a un padre se hace a través de eventos personalizados, los cuales invocan funciones que le son pasdas al hijo como Props (hijo a padre)
+
+    onNewCategory(inputValue.trim());
+    // Actualiza el estado actual seteandolo a una cadena vacía para limpiar la caja de formulario
+    setInputValue("");
   };
   return (
     <form onSubmit={onSubmit}>
