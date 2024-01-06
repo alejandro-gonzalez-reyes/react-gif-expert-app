@@ -5,12 +5,7 @@ import { GifGrid } from "./components/GifGrid";
 export const GifExpertApp = () => {
   // Siempre que se desee cambiar parte del contenido del HTML de forma dinámica, se debe pensar en el estado interno del componente
   // Los hooks en React jamás deben condicionarse
-  const [categories, setCategories] = useState([
-    "One Punch",
-    "Dragon Ball",
-    "Pokemon",
-    "Super Campeones",
-  ]);
+  const [categories, setCategories] = useState([]);
 
   // Función encargada de actualizar el estado referente al listado de categorías
   const onAddCategory = (newCategory) => {
@@ -25,7 +20,7 @@ export const GifExpertApp = () => {
     if (coincidencias.length > 0) return;
 
     // Crear un nuevo estado conservando la información actual, evitando mutar el arreglo con el operador spreed
-    setCategories([...categories, newCategory]);
+    setCategories([newCategory, ...categories]);
   };
   return (
     <>

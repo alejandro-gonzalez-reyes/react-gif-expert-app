@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getGifs } from "../helpers/getGifs";
+import { GifItem } from "./GifItem";
 
 export const GifGrid = ({ category }) => {
   // Estado local para almacenar el listado de gifs referentes a la categoría seleccionada
@@ -26,11 +27,14 @@ export const GifGrid = ({ category }) => {
   return (
     <section>
       <h3>{category}</h3>
-      <div>
-        {gifs.map(({ id, title, url }) => (
-          <article key={id}>
-            <h6>{title}</h6>
-          </article>
+      {/* className es usado para asociar una clase de CSS a un elemento de JSX, No podemos user class directamente ya que es una palabra reservada de JS */}
+      <div className="card-grid">
+        {/* 
+        Mostrar cada una de las imágenes encontradas mediante el componente GifItem
+        Desestructuramos el objeto de imagen localizado {...image}, para que cada una de sus propiedades pasen como props independientes al componente: id, title, url
+        */}
+        {gifs.map((image) => (
+          <GifItem key={image.id} {...image} />
         ))}
       </div>
     </section>
