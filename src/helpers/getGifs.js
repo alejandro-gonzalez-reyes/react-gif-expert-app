@@ -7,12 +7,11 @@
 export const getGifs = async (category) => {
   const END_POINT = "https://api.giphy.com/v1/gifs/search";
   const API_KEY = "ayrLEkFLj2aNX3A4oYEiObyiqLJ1MAQp";
-  const LIMIT = 20;
+  const LIMIT = 10;
   const LANG = "es";
 
   // Constuir la URL
   const URL = `${END_POINT}?api_key=${API_KEY}&q=${category}&limit=${LIMIT}&lang=${LANG}`;
-  console.log(URL);
 
   // Realizar la petición HTTP
   const request = await fetch(URL);
