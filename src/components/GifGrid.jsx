@@ -2,6 +2,7 @@
 // import { getGifs } from "../helpers/getGifs";
 import { GifItem } from "./GifItem";
 import { useFetchGifs } from "../hooks/useFetchGifs";
+import { LoadingMessage } from "./LoadingMessage";
 
 export const GifGrid = ({ category }) => {
   /*
@@ -32,7 +33,10 @@ export const GifGrid = ({ category }) => {
 
   return (
     <section>
-      <h3>{category}</h3>
+      <h4>{category}</h4>
+      {/* Mostrar componente de carga si la petición HTTP aun no se completa */}
+      {isLoading && <LoadingMessage />}
+
       {/* className es usado para asociar una clase de CSS a un elemento de JSX, No podemos user class directamente ya que es una palabra reservada de JS */}
       <div className="card-grid">
         {/* 
