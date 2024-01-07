@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { AddCategory } from "./components/AddCategory";
-import { GifGrid } from "./components/GifGrid";
+// Esto es posible gracias al archivo de barril (index.js) que exporta esos dos archivos
+import { AddCategory, GifGrid } from "./components";
 
 export const GifExpertApp = () => {
   // Siempre que se desee cambiar parte del contenido del HTML de forma dinámica, se debe pensar en el estado interno del componente
