@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { getGifs } from "../helpers/getGifs";
+// import { useEffect, useState } from "react";
+// import { getGifs } from "../helpers/getGifs";
 import { GifItem } from "./GifItem";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 
 export const GifGrid = ({ category }) => {
+  /*
   // Estado local para almacenar el listado de gifs referentes a la categoría seleccionada
   const [gifs, setGifs] = useState([]);
 
@@ -23,6 +25,10 @@ export const GifGrid = ({ category }) => {
     getImages();
     // El arreglo de dependencias vacío, indica que este efecto secundario solo se ejecuta la primera vez que se crea el componente, cualquier otro cambio de estado que force su renderización, no provocará que se vuelva a invocar dicha función,
   }, []);
+  */
+
+  // Invocar mi Custom Hook para recuperar los gifs asociados a la categoría seleccionada, así como saber si la petición HTTP está en progreso o finalizada
+  const { gifs, isLoading } = useFetchGifs(category);
 
   return (
     <section>
